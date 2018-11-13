@@ -208,10 +208,19 @@
     <Compile Include="Migrations\201811121131115_InitialModel.Designer.cs">
       <DependentUpon>201811121131115_InitialModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811131031210_ConvertTelToString.cs" />
+    <Compile Include="Migrations\201811131031210_ConvertTelToString.Designer.cs">
+      <DependentUpon>201811131031210_ConvertTelToString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811131050321_ProductTable.cs" />
+    <Compile Include="Migrations\201811131050321_ProductTable.Designer.cs">
+      <DependentUpon>201811131050321_ProductTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -301,6 +310,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811121131115_InitialModel.resx">
       <DependentUpon>201811121131115_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811131031210_ConvertTelToString.resx">
+      <DependentUpon>201811131031210_ConvertTelToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811131050321_ProductTable.resx">
+      <DependentUpon>201811131050321_ProductTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

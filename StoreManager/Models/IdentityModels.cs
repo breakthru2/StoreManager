@@ -11,10 +11,11 @@ namespace StoreManager.Models
     {
         public string FullName { get; set; }
         public string Address { get; set; }
-        public int TelNumber { get; set; }
+        public string TelNumber { get; set; }
         public string UserRole { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
+
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
@@ -24,6 +25,7 @@ namespace StoreManager.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Product> Products { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

@@ -84,7 +84,7 @@ namespace StoreManager.Models
         [Required]
         public string Address { get; set; }
         [Required]
-        public int TelNumber { get; set; }
+        public string TelNumber { get; set; }
         [Display(Name ="User Role"),Required]
         public string UserRole { get; set; }
     }
