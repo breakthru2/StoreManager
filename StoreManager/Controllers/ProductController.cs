@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
+using StoreManager.ViewModels;
 
 namespace StoreManager.Controllers
 {
@@ -15,6 +17,7 @@ namespace StoreManager.Controllers
             Db = new ApplicationDbContext();
         }
         // GET: Store
+        [Authorize]
         public ActionResult Index()
         {
             var products = Db.Products.ToList();
@@ -29,13 +32,13 @@ namespace StoreManager.Controllers
         [HttpPost]
         public ActionResult Create(Product product)
         {
-            if(product.Id == 0)
+            if(product.ProductId == 0)
             {
                 Db.Products.Add(product);
             }
             else
             {
-                var productInDb = Db.Products.Single(model => model.Id == product.Id);
+                var productInDb = Db.Products.Single(model => model.ProductId == product.ProductId);
 
                 productInDb.ProductName = product.ProductName;
                 productInDb.Quantity = product.Quantity;
@@ -50,20 +53,29 @@ namespace StoreManager.Controllers
         }
         public ActionResult Edit(int id)
         {
-            var product = Db.Products.SingleOrDefault(model => model.Id == id);
+            var product = Db.Products.SingleOrDefault(model => model.ProductId == id);
             return View(product);
         }
         public ActionResult Details(int id)
         {
-            var product = Db.Products.SingleOrDefault(model => model.Id == id);
+            var product = Db.Products.SingleOrDefault(model => model.ProductId == id);
             return View(product);
         }
         public ActionResult Delete(int id)
         {
-            var product = Db.Products.SingleOrDefault(model => model.Id == id);
+            var product = Db.Products.SingleOrDefault(model => model.ProductId == id);
             Db.Products.Remove(product);
             Db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        public ActionResult Buy(int id)
+        {
+            var product = Db.Products.SingleOrDefault(model => model.ProductId == id);
+            var viewModel = new ProductSaleViewModel
+            {
+                Product = product
+            };
+            return View(viewModel);
         }
     }
 }

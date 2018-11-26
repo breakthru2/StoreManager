@@ -8,7 +8,8 @@ namespace StoreManager.Models
 {
     public class Product
     {
-        public int Id { get; set; }
+        [Key]
+        public int ProductId { get; set; }
         [Display(Name = "Product Name"),Required]
         public string ProductName { get; set; }
         [Required]

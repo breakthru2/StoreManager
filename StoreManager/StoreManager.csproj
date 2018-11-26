@@ -201,33 +201,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811121057335_InitialCreate.cs" />
-    <Compile Include="Migrations\201811121057335_InitialCreate.Designer.cs">
-      <DependentUpon>201811121057335_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811121131115_InitialModel.cs" />
-    <Compile Include="Migrations\201811121131115_InitialModel.Designer.cs">
-      <DependentUpon>201811121131115_InitialModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811131031210_ConvertTelToString.cs" />
-    <Compile Include="Migrations\201811131031210_ConvertTelToString.Designer.cs">
-      <DependentUpon>201811131031210_ConvertTelToString.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811131050321_ProductTable.cs" />
-    <Compile Include="Migrations\201811131050321_ProductTable.Designer.cs">
-      <DependentUpon>201811131050321_ProductTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811131103527_SalesTable.cs" />
-    <Compile Include="Migrations\201811131103527_SalesTable.Designer.cs">
-      <DependentUpon>201811131103527_SalesTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811131117343_SaleDetailsTable.cs" />
-    <Compile Include="Migrations\201811131117343_SaleDetailsTable.Designer.cs">
-      <DependentUpon>201811131117343_SaleDetailsTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811191025004_RemoveUserId.cs" />
-    <Compile Include="Migrations\201811191025004_RemoveUserId.Designer.cs">
-      <DependentUpon>201811191025004_RemoveUserId.cs</DependentUpon>
+    <Compile Include="Migrations\201811261035210_InitialModel.cs" />
+    <Compile Include="Migrations\201811261035210_InitialModel.Designer.cs">
+      <DependentUpon>201811261035210_InitialModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -238,6 +214,7 @@
     <Compile Include="Models\SaleDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\ProductSaleViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -306,6 +283,7 @@
     <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
+    <Content Include="Views\Product\Buy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -325,26 +303,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201811121057335_InitialCreate.resx">
-      <DependentUpon>201811121057335_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811121131115_InitialModel.resx">
-      <DependentUpon>201811121131115_InitialModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811131031210_ConvertTelToString.resx">
-      <DependentUpon>201811131031210_ConvertTelToString.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811131050321_ProductTable.resx">
-      <DependentUpon>201811131050321_ProductTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811131103527_SalesTable.resx">
-      <DependentUpon>201811131103527_SalesTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811131117343_SaleDetailsTable.resx">
-      <DependentUpon>201811131117343_SaleDetailsTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811191025004_RemoveUserId.resx">
-      <DependentUpon>201811191025004_RemoveUserId.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811261035210_InitialModel.resx">
+      <DependentUpon>201811261035210_InitialModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -10,7 +10,6 @@ namespace StoreManager.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "StoreManager.Models.ApplicationDbContext";
         }
 
         protected override void Seed(StoreManager.Models.ApplicationDbContext context)

@@ -3,10 +3,23 @@ namespace StoreManager.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class InitialModel : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.Products",
+                c => new
+                    {
+                        ProductId = c.Int(nullable: false, identity: true),
+                        ProductName = c.String(nullable: false),
+                        Quantity = c.Int(nullable: false),
+                        ExpirationDate = c.DateTime(),
+                        DateAdded = c.DateTime(nullable: false),
+                        Price = c.Double(nullable: false),
+                    })
+                .PrimaryKey(t => t.ProductId);
+            
             CreateTable(
                 "dbo.AspNetRoles",
                 c => new
@@ -31,10 +44,43 @@ namespace StoreManager.Migrations
                 .Index(t => t.RoleId);
             
             CreateTable(
+                "dbo.SaleDetails",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        SaleId = c.Int(nullable: false),
+                        ProductQuantity = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Sales", t => t.SaleId, cascadeDelete: true)
+                .Index(t => t.SaleId);
+            
+            CreateTable(
+                "dbo.Sales",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        ProductId = c.Int(nullable: false),
+                        QuantitySold = c.Int(nullable: false),
+                        DateSold = c.DateTime(nullable: false),
+                        Price = c.Double(nullable: false),
+                        User_Id = c.String(maxLength: 128),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Products", t => t.ProductId, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetUsers", t => t.User_Id)
+                .Index(t => t.ProductId)
+                .Index(t => t.User_Id);
+            
+            CreateTable(
                 "dbo.AspNetUsers",
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
+                        FullName = c.String(),
+                        Address = c.String(),
+                        TelNumber = c.String(),
+                        UserRole = c.String(),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
@@ -79,21 +125,30 @@ namespace StoreManager.Migrations
         
         public override void Down()
         {
+            DropForeignKey("dbo.SaleDetails", "SaleId", "dbo.Sales");
+            DropForeignKey("dbo.Sales", "User_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Sales", "ProductId", "dbo.Products");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
+            DropIndex("dbo.Sales", new[] { "User_Id" });
+            DropIndex("dbo.Sales", new[] { "ProductId" });
+            DropIndex("dbo.SaleDetails", new[] { "SaleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
+            DropTable("dbo.Sales");
+            DropTable("dbo.SaleDetails");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.Products");
         }
     }
 }
